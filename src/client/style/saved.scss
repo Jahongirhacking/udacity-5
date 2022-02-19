@@ -1,0 +1,46 @@
+$star_back: #3f3f3f;
+$gold: #ffd700;
+$white_clr: #faebd7;
+$gray_clr: #a1a1a1;
+
+#saved{
+    width: 100vw;
+    transition: 0.4s ease;
+    transition-property: display;
+    display: grid;
+    grid-template-areas: "star saved_places";
+    grid-template-columns: 0fr auto;
+    padding: 0;
+    align-items: center;
+    background-color: $white_clr;
+    #star_icon{
+        padding: 15px;
+        background-color: $star_back;
+        color: $gold;
+        text-align: center;
+        align-items: center;
+        grid-area: star;
+    }
+    #saved_places{
+        background-color: inherit;
+        grid-area: saved_places;
+        overflow: auto;
+        white-space: nowrap;
+        display: flex;
+        .places{
+            padding: 8px 12px;
+            border-radius: 5px;
+            background-color: $gray_clr;
+            width: fit-content;
+            width: -moz-fit-content;
+            margin-left: 12px;
+            margin-right: 3px;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+    &.hidden{
+        display: none;
+    }
+}

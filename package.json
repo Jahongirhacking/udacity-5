@@ -1,0 +1,42 @@
+{
+  "name": "project-5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node src/server/server.js",
+    "build-prod": "webpack --config webpack.prod.js --watch",
+    "build-dev": "webpack-dev-server --config webpack.dev.js --open"
+  },
+  "author": "Jahongir Hayitov",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "file-loader": "^6.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.4",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.16.11",
+    "axios": "^0.26.0",
+    "babel-loader": "^8.2.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.6.0",
+    "dotenv": "^16.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.5.1",
+    "mini-css-extract-plugin": "^2.5.3",
+    "node-sass": "^7.0.1",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.1",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4",
+    "workbox-webpack-plugin": "^6.4.2"
+  }
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Planner App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="./img/icon.jpg">
+</head>
+<body>
+    <div class="container">
+        <nav id="nav">
+            <h1>Travel Planner</h1>
+            <div id="menu"><i class="fa-solid fa-bars"></i></div>
+        </nav>
+        
+        <div id="saved">
+            <div id="star_icon"><i class="fa-solid fa-star"></i></div>
+            <div id="saved_places">
+                <!-- <div class="places">
+                    Paris
+                </div>
+                <div class="places">
+                    Madrid
+                </div>
+                <div class="places">
+                    Berlin
+                </div>
+                <div class="places">
+                    Tashkent
+                </div> -->
+            </div>
+        </div>
+
+        <div id="search">
+            <div class="input city"><input type="text" id="city" placeholder="City" autocomplete="off" required></div>
+            <div class="input country"><input type="text" id="country" placeholder="Country" autocomplete="off"></div>
+            <div class="input date"><input type="date" id="date" required></div>
+            <div id="find"><i class="fa-solid fa-magnifying-glass"></i></div>
+        </div>
+
+        <main id="main">
+            <div id="blur" class="hidden">
+                <i class="fas fa-cog fa-spin"></i>
+            </div>
+            <div id="img">
+                <img src="./img/icon.jpg" alt="Image of the city">
+            </div>
+            <div class="info">
+                <h2>My trip to: <span class="where_info"></span></h2>
+                <h2>Departing: <span class="date_info"></span></h2>
+                <div class="buttons">
+                    <button class="save">save trip</button>
+                    <button class="remove __passive">remove trip</button>
+                </div>
+                <p><span class="where_info"></span> is <span class="how_much_time"></span> days away</p>
+                <p>Typical weather for then is:</p>
+                <p id="temp">High: <span class="high"></span>, Low: <span class="low"></span></p>
+                <p id="situation"><span></span> throughout the day</p>
+            </div>
+        </main>
+
+        <footer id="footer">
+            &copy; Copyright Udacity - created by Jahongir Hayitov 2022
+        </footer>
+    </div>
+
+    <script>
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
+            // Use the window load event to keep the page load performant
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
+    </script>
+</body>
+</html>

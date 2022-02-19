@@ -1,0 +1,28 @@
+$nav_clr: #0a8786;
+$nav_clr_light: #0ca7a7;
+
+nav{
+    width: 100vw;
+    background-color: $nav_clr;
+    color: white;
+    font-size: 18pt;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    div{
+        transition: 0.4s ease;
+        transition-property: background-color;
+        padding: 10px 15px;
+        border-radius: 50%;
+        &:hover{
+            cursor: pointer;
+            background-color: $nav_clr_light;
+        }
+        &:active{
+            @at-root #saved{
+                display: none;
+            }
+        }
+    }
+}
