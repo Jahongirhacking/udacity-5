@@ -1,4 +1,4 @@
-# Evaluate a News Article with Natural Language Processing
+# Travel Planner App
 
 - [Demo-Preview](#demo-preview)
 - [How to use](#how-to-use)
