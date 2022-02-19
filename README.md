@@ -31,6 +31,7 @@
 ![Screenshot from 2022-02-20 03-02-39](https://user-images.githubusercontent.com/66916141/154820619-5def8624-274d-438b-8338-b93d2242c685.png)
 
 * DOMContentLoaded: **119 ms**
+* I added "favourite place" section to save your places and then you can remove them
 * I changed some colors and created my own design
 * I put some animation and slight changes
 * Although, during the process of developing, I came across some issues, I managed to avoid them 
