@@ -1,14 +1,3 @@
-const dotenv = require('dotenv');
-dotenv.config();
-const geonames_username=process.env.GEONAMES_USERNAME;
-const weatherbit_key=process.env.WEATHERBIT_KEY;
-const open_weather_api_key=process.env.OPEN_WEATHER_API_KEY;
-const pixabay_api_key=process.env.PIXABAY_API_KEY;
-
-function index(req, res) {
-    res.send('hello world!');
-}
-
 // Call express
 const express = require('express');
 const app = express();
@@ -22,7 +11,7 @@ const axios = require('axios');
 const cors = require('cors');
 app.use(cors());
 
-const port = 3001;
+const port = 3003;
 
 app.use(express.static('dist'));
 
@@ -31,18 +20,12 @@ app.listen(port, (err)=>{
     else console.log(`Server is running on port ${port}`);
 })
 
+function index(req, res) {
+    res.send('hello world!');
+}
+
 app.get('/',(req,res)=>{
     res.send("Hello World");
-    res.end();
-})
-
-app.get('/keys',(req,res) => {
-    res.send({
-        geonames_username: geonames_username,
-        weatherbit_key: weatherbit_key,
-        open_weather_api_key: open_weather_api_key,
-        pixabay_api_key: pixabay_api_key
-    });
     res.end();
 })
 
@@ -61,3 +44,14 @@ app.get('/newPlaceGet',(req,res)=>{
     res.send(newObj);
     res.end();
 })
+
+
+// app.get('/keys',(req,res) => {
+//     res.send({
+//         geonames_username: geonames_username,
+//         weatherbit_key: weatherbit_key,
+//         open_weather_api_key: open_weather_api_key,
+//         pixabay_api_key: pixabay_api_key
+//     });
+//     res.end();
+// })
