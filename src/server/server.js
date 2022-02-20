@@ -25,7 +25,6 @@ function index(req, res) {
 }
 
 app.get('/',(req,res)=>{
-    res.send("Hello World");
     res.end();
 })
 
