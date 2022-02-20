@@ -1,7 +1,7 @@
 // js
 import { saved_place} from './js/saved_place';
 import { hide } from './js/hide';
-import { getCoordinatesAPI } from './js/apis'
+import { getCoordinatesAPI } from './js/app'
 // styles
 import './style/style.scss';
 import './style/nav.scss';
@@ -15,7 +15,9 @@ import noImg from '../img/no_img.png';
 //Variables
 let city, country, date;
 
+// hide or reveal favorite section
 document.getElementById("menu").addEventListener("click",(e)=>{hide("saved")})
+// if find button is clicked then call api functions
 document.getElementById("find").addEventListener("click",(e)=>{
     city = document.getElementById("city").value;
     country = document.getElementById("country").value;
