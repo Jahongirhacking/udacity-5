@@ -1,3 +1,6 @@
+const axios = require('axios');
+
+// Current object
 const obj={
     temp_max: 0,
     temp_min: 0,
@@ -8,17 +11,7 @@ const obj={
 // Saved element array
 let saved=[];
 
-const axios = require('axios');
-const keys={};
-axios.get('/keys')
-.then(res => res.data)
-.then(data => {
-    keys.geonames_username=data.geonames_username;
-    keys.weatherbit_key=data.weatherbit_key;
-    keys.open_weather_api_key=data.open_weather_api_key;
-    keys.pixabay_api_key=data.pixabay_api_key;
-})
-
+// Obtain city's coordinate
 export const getCoordinatesAPI = async (city = '', country = '', date = '') => {
 
     // Time Array
@@ -27,17 +20,19 @@ export const getCoordinatesAPI = async (city = '', country = '', date = '') => {
     const futureTime = new Date(parseInt(timeArr[0]),parseInt(timeArr[1])-1,parseInt(timeArr[2])).getTime();
     obj.daysLeft = parseInt((futureTime - currentTime)/86400000)+1;
 
-    const url = `http://api.geonames.org/searchJSON?q=${city}&countryName=${country}&maxRows=1&username=${keys.geonames_username}`;
+    // Get data geonames
+    const url = `http://api.geonames.org/searchJSON?q=${city}&countryName=${country}&maxRows=1&username=jahongirhacking`;
     axios.get(url)
     .then((res) => res.data)
     .then((data) => {
         if(data.totalResultsCount>0 && city!='' && date!='' && obj.daysLeft>=0 && obj.daysLeft<=16){
             
+            // During the searching, -> blur
             Client.hide("blur");
             axios.post('/newPlacePost',data.geonames[0])
             // After posting Geo data
             .then((el)=>{
-                // Receive precious data
+                // Receive precious data from server
                 axios.get('/newPlaceGet')
                 .then((res) => res.data)
                 .then((data) => {
@@ -48,10 +43,11 @@ export const getCoordinatesAPI = async (city = '', country = '', date = '') => {
                     obj.countryName = data.countryName;
                     obj.date = date;
                 })
-                // Weather
+                // Obtain Weather Data
                 .then((e) => {
                     getWeather(obj.lat, obj.lng, obj.daysLeft);
                 })
+                // Obtain Image
                 .then((e) => {
                     getImageAPI(`${obj.name}+${obj.countryName}`);
                 })
@@ -59,7 +55,7 @@ export const getCoordinatesAPI = async (city = '', country = '', date = '') => {
             })
 
         }else{
-            alert("Sorry, the data was not found, please try again!");
+            alert("Sorry, the data was not found or expired, please try again!");
             //Then delete the expired data on saved list
         }
         
@@ -70,8 +66,9 @@ export const getCoordinatesAPI = async (city = '', country = '', date = '') => {
 
 const getWeather = async (lat, lng, daysLeft) => {
 
-    const openWeatherApiKey=keys.open_weather_api_key;
-    const weatherbitKey=keys.weatherbit_key;
+    const openWeatherApiKey="62f5922de50fd90ff14ef5af29eb8380";
+    const weatherbitKey="a7a672cba2b04eef8d1752ccbc13b6bd";
+    //if within a week
     if(daysLeft<=7){
         axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${openWeatherApiKey}`)
         .then(res => res.data)
@@ -106,7 +103,7 @@ const getWeather = async (lat, lng, daysLeft) => {
 
 const getImageAPI = async (keyword) => {
 
-    const PIXABAY_API_KEY=keys.pixabay_api_key;
+    const PIXABAY_API_KEY="25767911-929028c939b438b835216b326";
     const url = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${keyword}&image_type=photo&pretty=true`;
     axios.get(url)
     .then(res => res.data)
@@ -116,6 +113,7 @@ const getImageAPI = async (keyword) => {
         
     })
     .then((e) => {
+        // Update the UI
         setTimeout(updateUI,1500);
     })
     .catch(err => console.error(err))
@@ -140,7 +138,7 @@ function updateUI(){
     
     if(saved.includes(obj.geonameId)) obj.bool=false;
     else obj.bool=true; 
-
+    // Save and remove Buttons
     if(obj.bool) {
         document.querySelector(".info>.buttons>.remove").classList.add("__passive");
         document.querySelector(".info>.buttons>.save").classList.remove("__passive");
