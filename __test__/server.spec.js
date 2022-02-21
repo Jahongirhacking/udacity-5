@@ -1,15 +1,19 @@
-import { index } from '../src/server/server';
+const request = require('supertest');
+import "regenerator-runtime/runtime";
 
-describe('Test Handlers', function () {
-
-    test('responds to /', () => {
-        const req = {  };
-
-        const res = { text: '',
-            send: function(input) { this.text = input } 
-        };
-        index(req, res);
+describe("Post endpoints", () => {
+    it("should create a new post", async () => {
         
-        expect(res.text).toEqual('hello world!');
-    });
+        const data={
+            lat: 52.52437,
+            lng: 13.41053,
+            geonameId: 2950159,
+            name: "Berlin",
+            countryName: "Germany" 
+        }
+        const res = await request.agent('http://localhost:3001')
+        .post('/newPlacePost')
+        .send(data)
+        expect(res.statusCode).toEqual(201)
+    })
 })
