@@ -20,11 +20,8 @@ app.listen(port, (err)=>{
     else console.log(`Server is running on port ${port}`);
 })
 
-function index(req, res) {
-    res.send('hello world!');
-}
-
 app.get('/',(req,res)=>{
+    res.send("Hello World");
     res.end();
 })
 
@@ -36,6 +33,7 @@ app.post('/newPlacePost',(req,res)=>{
     newObj.name = req.body.name;
     newObj.countryName = req.body.countryName;
     console.log(newObj.lat, newObj.lng, newObj.geonameId, newObj.name, newObj.countryName);
+    res.status(201);
     res.end();
 })
 
@@ -43,14 +41,3 @@ app.get('/newPlaceGet',(req,res)=>{
     res.send(newObj);
     res.end();
 })
-
-
-// app.get('/keys',(req,res) => {
-//     res.send({
-//         geonames_username: geonames_username,
-//         weatherbit_key: weatherbit_key,
-//         open_weather_api_key: open_weather_api_key,
-//         pixabay_api_key: pixabay_api_key
-//     });
-//     res.end();
-// })
