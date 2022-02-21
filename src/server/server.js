@@ -11,7 +11,7 @@ const axios = require('axios');
 const cors = require('cors');
 app.use(cors());
 
-const port = 3003;
+const port = 3001;
 
 app.use(express.static('dist'));
 
